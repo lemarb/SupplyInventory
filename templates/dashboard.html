@@ -1,0 +1,13 @@
+{% extends 'base.html' %}{% block content %}
+<h3>Dashboard</h3>
+<div class="row g-3">
+<div class="col-md-3"><div class="card p-3"><h6>Total Supplies</h6><h2>{{total}}</h2></div></div>
+<div class="col-md-3"><div class="card p-3"><h6>Available Stock</h6><h2>{{available}}</h2></div></div>
+<div class="col-md-3"><div class="card p-3"><h6>Low Stock</h6><h2>{{low_stock|length}}</h2></div></div>
+<div class="col-md-3"><div class="card p-3"><h6>Out of Stock</h6><h2>{{out_of_stock|length}}</h2></div></div>
+</div>
+<h5 class="mt-4">Recent Transactions</h5>
+<table class="table table-striped"><tr><th>Date</th><th>Item</th><th>Type</th><th>Qty</th></tr>
+{% for t in recent %}<tr><td>{{t.created_at}}</td><td>{{t.supply.item_name if t.supply}}</td><td>{{t.tx_type}}</td><td>{{t.quantity}}</td></tr>{% endfor %}
+</table>
+{% endblock %}
